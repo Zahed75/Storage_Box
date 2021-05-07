@@ -67,7 +67,6 @@ def profile(request):
     return render(request,'App_Login/profile.html',context={})
 
 
-
 @login_required
 def add_pro_pic(request):
     form = ProfilePic()
@@ -82,7 +81,7 @@ def add_pro_pic(request):
 
     return render(request, 'App_Login/propic_add.html', context={'form':form})
 
-
+@login_required
 
 def change_pro_pic(request):
     form= ProfilePic(instance=request.user.user_profile)
@@ -93,7 +92,7 @@ def change_pro_pic(request):
             return HttpResponseRedirect(reverse('App_Login:profile'))
 
 
-    return render(request,'App_Login/pro_pic_add.html',context={'form':form})
+    return render(request,'App_Login/propic_add.html',context={'form':form})
 
 
 @login_required
