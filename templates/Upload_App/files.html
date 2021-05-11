@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title_block %}{{title}}{% endblock %}
+{% block body_block %}
+
+
+{% if search %}
+
+{% for Uploads in result %}
+<h3>{{Uploads.upload_title}}</h3>
+<h6>{{Uploads.update_date}}</h6>
+<div class="row">
+  <div class="col-sm-4">
+    <img src="/media/{{Uploads.thumbnail}}" width="100%">
+  </div>
+</div>
+<button type="button" name="button" class="btn btn-warning btn-sm">
+  <a style="color:white; " href="{% url 'Upload_App:edit_files' pk=Uploads.pk %}">Edit</a></button>
+<hr>
+{% endfor %}
+
+{% else %}
+
+
+{% for Uploads in user.post_author.all %}
+<h3>{{Uploads.upload_title}}</h3>
+<h6>{{Uploads.update_date}}</h6>
+<div class="row">
+  <div class="col-sm-4">
+    <img src="/media/{{Uploads.thumbnail}}" width="100%">
+  </div>
+</div>
+<button type="button" name="button" class="btn btn-warning btn-sm">
+  <a style="color:white; " href="{% url 'Upload_App:edit_files' pk=Uploads.pk %}">Edit</a></button>
+<hr>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,7 +1,57 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title_block %} {{title}} {% endblock %}
-
 {% block body_block %}
-<h4>Home Page</h4>
+
+<h3>Welcome To File <span class="hd"> Management</span> System</h3>
+
+<div class="container my-5">
+  <h2 class="my-5">Featured Files</h2>
+ 
+
+
+  <div class="row">
+    {% if search %}
+    {% for x in result %}
+    <div class="col-md-6 col-sm-12 col-lg-3">
+      <figure class="card card-product">
+        <div class="img-wrap">
+          <img src="/media/{{x.thumbnail}}" style="width:100%; height:300px;">
+        </div>
+        <figcaption class="info-wrap">
+          <h6>Upload-Date:{{x.uplaod_date}}</h6>
+        <h6 class="title"><a href=""></a>{{x.upload_title}}</h6>
+          <div class="action-wrap">
+            <button class="btn btn-info btn-sm"><a href="">Download</a></button>
+            <h6>Update-Date:{{x.update_date}}</h6>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+    {% endfor %}
+
+    {% else %}
+
+    {% for x in Uploads %}
+    <div class="col-md-6 col-sm-12 col-lg-3">
+      <figure class="card card-product">
+        <div class="img-wrap">
+          <img src="/media/{{x.thumbnail}}" style="width:100%; height:300px;">
+        </div>
+        <figcaption class="info-wrap">
+          <h6>Upload-Date:{{x.uplaod_date}}</h6>
+        <h6 class="title"><a href=""></a>{{x.upload_title}}</h6>
+          <div class="action-wrap">
+            <button class="btn btn-info btn-sm"><a href="">Download</a></button>
+            <h6>Update-Date:{{x.update_date}}</h6>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  
+</div>
+
 {% endblock %}

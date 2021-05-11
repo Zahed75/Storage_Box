@@ -8,46 +8,54 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>{% block title_block %} Social {% endblock %}</title>
-    {% block css_block %}
 
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block title_block %} FIle {% endblock %}
+    
 </head>
 
 <body>
 
     <!-- navbar start  -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+        <a class="navbar-brand" href="{% url 'index' %}">FileManagemenet</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto  m-auto ">
                 <li class="nav-item active">
                     <a class="nav-link" href=""> <img src="" width="30px" alt=""> <span
                             class="sr-only">(current)</span></a>
                 </li>
-
+                {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-                        Dashboard
+                        @{{user.username}}
                     </a>
+                 
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'App_Login:profile' %}">Your Profile</a>
+                        <a class="dropdown-item" href="{% url 'App_Login:profile' %}">Dashboard</a>
+                        <a class="dropdown-item" href="{% url 'Upload_App:create_file' %}">upload File</a>
+                        <a class="dropdown-item" href="{% url 'Upload_App:my_files' %}">My-Files</a>
                         <a class="dropdown-item" href="{% url 'App_Login:logout' %}">Logout</a>
 
 
 
-                        <div class="dropdown-divider"></div>
+                      
 
                     </div>
-                </li>
+                        <form class="form-inline my-2 my-lg-0" method="GET">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
 
+                </li>
+                {% else %}
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'App_Login:signup' %}">Sign up</a>
@@ -55,6 +63,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'App_Login:login' %}">Login</a>
                 </li>
+                
+                {% endif %}
+
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="{% url 'App_Login:login' %}">Logout</a>
                 </li> -->

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title_block %}{{title}}{% endblock  %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+<div class="row">
+    
+    <div class="col-sm-6">
+      <h2>{{Uploads.upload_title}}</h2>
+      <h4>Posted By: @{{Uploads.author}}</h4>
+      <i><h6>Published On: {{Uploads.uplaod_date}}</h6></i>
+      <i><h6>Updated On: {{Uploads.update_date}}</h6></i>
+    </div>
+    <div class="col-sm-6">
+      <img src="/media/{{Uploads.thumbnail}}" width="100%">
+    </div>
+    <p>
+      {{Uploads.file_details}}
+    </p>
+    <hr>
+  
+    </div>
+    
+    
+    
+{% endblock %}
